@@ -17,10 +17,12 @@ void main(){
 class homePage extends StatelessWidget {
   @override
   Widget build(BuildContext context){
+    int _selectedPage= 0;
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Home'),
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.black,
       ),
       body: new Container(
         child: new Center(
@@ -33,24 +35,50 @@ class homePage extends StatelessWidget {
                  icon: new Icon(Icons.favorite, color: Colors.blueAccent,size: 40.0,),
                 onPressed: () {Navigator.of(context).pushNamed("/FavouritesPage");}
             ),
-            new Text("Favorites", style: new TextStyle(fontSize: 20.0),),
+            new Text("Favorites Page", style: new TextStyle(fontSize: 20.0),),
 
             new IconButton(
                 icon: new Icon(Icons.bookmark, color: Colors.greenAccent,size: 40.0,),
                 onPressed: () {Navigator.of(context).pushNamed("/BookmarksPage");}
             ),
-            new Text("Bookmarks", style: new TextStyle(fontSize: 20.0),),
+            new Text("Bookmarks Page", style: new TextStyle(fontSize: 20.0),),
 
             new IconButton(
                 icon: new Icon(Icons.chat, color: Colors.redAccent,size: 40.0,),
                 onPressed: () {Navigator.of(context).pushNamed("/ChatsPage");}
             ),
-            new Text("Chats", style: new TextStyle(fontSize: 20.0),),
+            new Text("Chats Page", style: new TextStyle(fontSize: 20.0),),
           ],
         )
       ),
-      )
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedPage,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        onTap: (int index){
+          _selectedPage=index;
+        },
+        items: navBarIconsList(),
+      ),
     );
+  }
+
+  navBarIconsList() {
+    return [
+      BottomNavigationBarItem(
+          icon: Icon(Icons.chat),
+          title: Text("Chats")
+      ),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark),
+          title: Text("Bookmarks")
+      ),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.favorite),
+          title: Text("Favourites")
+      ),
+    ];
   }
 }
 
@@ -61,7 +89,7 @@ class FavouritesPage extends StatelessWidget {
   Widget build(BuildContext context){
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Favourites'),
+          title: new Text('Favourites Page'),
           backgroundColor: Colors.blueAccent,
         ),
         body: new Container(
@@ -75,7 +103,7 @@ class FavouritesPage extends StatelessWidget {
                       icon: new Icon(Icons.bookmark, color: Colors.blueAccent,size: 40.0,),
                       onPressed: () {Navigator.of(context).pushNamed("/BookmarksPage");}
                   ),
-                  new Text("Bookmarks", style: new TextStyle(fontSize: 20.0),)
+                  new Text("Bookmarks Page", style: new TextStyle(fontSize: 20.0),)
                 ],
               )
           ),
@@ -91,7 +119,7 @@ class BookmarksPage extends StatelessWidget {
   Widget build(BuildContext context){
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Bookmarks'),
+          title: new Text('Bookmarks Page'),
           backgroundColor: Colors.greenAccent,
         ),
         body: new Container(
@@ -105,7 +133,7 @@ class BookmarksPage extends StatelessWidget {
                       icon: new Icon(Icons.chat, color: Colors.greenAccent,size: 40.0,),
                       onPressed: () {Navigator.of(context).pushNamed("/ChatsPage");}
                   ),
-                  new Text("Chats", style: new TextStyle(fontSize: 20.0),)
+                  new Text("Chats Page", style: new TextStyle(fontSize: 20.0),)
                 ],
               )
           ),
@@ -121,7 +149,7 @@ class ChatsPage extends StatelessWidget {
   Widget build(BuildContext context){
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Chats'),
+          title: new Text('Chats Page'),
           backgroundColor: Colors.redAccent,
         ),
         body: new Container(
@@ -135,7 +163,7 @@ class ChatsPage extends StatelessWidget {
                       icon: new Icon(Icons.favorite, color: Colors.redAccent,size: 40.0,),
                       onPressed: () {Navigator.of(context).pushNamed("/FavouritesPage");}
                   ),
-                  new Text("Favourites", style: new TextStyle(fontSize: 20.0),)
+                  new Text("Favourites Page", style: new TextStyle(fontSize: 20.0),)
                 ],
               )
           ),
